@@ -19,6 +19,7 @@ tft-lcd.obj: C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include/s
 tft-lcd.obj: ../spi.h
 tft-lcd.obj: ../time-ctrl.h
 tft-lcd.obj: ../tft-lcd.h
+tft-lcd.obj: ../font-5x7.h
 
 ../tft-lcd.c:
 
@@ -57,4 +58,6 @@ C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-msp430_21.6.1.LTS/include/sys/_stdint.h:
 ../time-ctrl.h:
 
 ../tft-lcd.h:
+
+../font-5x7.h:
 

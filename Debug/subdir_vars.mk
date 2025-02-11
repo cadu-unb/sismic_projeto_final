@@ -10,6 +10,7 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../clock-lcd.c \
+../font-5x7.c \
 ../main.c \
 ../spi.c \
 ../tft-lcd.c \
@@ -17,6 +18,7 @@ C_SRCS += \
 
 C_DEPS += \
 ./clock-lcd.d \
+./font-5x7.d \
 ./main.d \
 ./spi.d \
 ./tft-lcd.d \
@@ -24,6 +26,7 @@ C_DEPS += \
 
 OBJS += \
 ./clock-lcd.obj \
+./font-5x7.obj \
 ./main.obj \
 ./spi.obj \
 ./tft-lcd.obj \
@@ -31,6 +34,7 @@ OBJS += \
 
 OBJS__QUOTED += \
 "clock-lcd.obj" \
+"font-5x7.obj" \
 "main.obj" \
 "spi.obj" \
 "tft-lcd.obj" \
@@ -38,6 +42,7 @@ OBJS__QUOTED += \
 
 C_DEPS__QUOTED += \
 "clock-lcd.d" \
+"font-5x7.d" \
 "main.d" \
 "spi.d" \
 "tft-lcd.d" \
@@ -45,6 +50,7 @@ C_DEPS__QUOTED += \
 
 C_SRCS__QUOTED += \
 "../clock-lcd.c" \
+"../font-5x7.c" \
 "../main.c" \
 "../spi.c" \
 "../tft-lcd.c" \

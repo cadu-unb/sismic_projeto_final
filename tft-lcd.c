@@ -3,6 +3,7 @@
 #include "spi.h"
 #include "time-ctrl.h"
 #include "tft-lcd.h"
+#include "font-5x7.h"
 
 
 void tftConfig()
@@ -253,7 +254,39 @@ void LCD_Carre()
     CSOUT |=  CSBIT;
 }
 
+void drawPixel(uint16_t x, uint16_t y, uint16_t color)
+{
+    uint8_t data[4];
 
+    // Defines the area of a single pixel
+    data[0] = x >> 8; data[1] = x & 0xFF;
+    tftWrite(0x2A, data, 2); // Set column address
+
+    data[0] = y >> 8; data[1] = y & 0xFF;
+    tftWrite(0x2B, data, 2); // Set row address
+
+    // Send the pixel color
+    data[0] = color >> 8; data[1] = color & 0xFF;
+    tftWrite(0x2C, data, 2); // Send the color
+}
+
+void drawChar(uint16_t x, uint16_t y, char c, uint16_t color, uint16_t bg) {
+    uint8_t i, j;
+    uint8_t line;
+
+    for (i = 0; i < 5; i++) {  // Largura do caractere (5 pixels)
+        line = font5x7[c - 32][i];  // Busca a linha correspondente no array
+
+        for (j = 0; j < 7; j++) {  // Altura do caractere (7 pixels)
+            if (line & 0x01) {
+                drawPixel(x + i, y + j, color);  // Pixel do texto
+            } else {
+                drawPixel(x + i, y + j, bg);  // Pixel de fundo
+            }
+            line >>= 1;
+        }
+    }
+}
 
 
 

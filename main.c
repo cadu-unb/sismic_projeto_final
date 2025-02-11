@@ -3,7 +3,6 @@
 #include "clock-lcd.h"
 #include "time-ctrl.h"
 
-
 int main(void)
 {
 	WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer

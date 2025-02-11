@@ -22,6 +22,7 @@
 #define DCOUT   P2OUT
 #define DCBIT   BIT6
 
+
 void tftConfig ();
 void tftInitSeq();
 void sWcmd      (uint8_t byte);
@@ -35,6 +36,8 @@ void LCD_Clear  (uint16_t cr, uint16_t cv, uint16_t cb, int screen_orientation);
 
 void LCD_Arc   ();
 void LCD_Carre ();
+
+void drawPixel(uint16_t x, uint16_t y, uint16_t color);
 
 
 #endif  // __TFT_LCD_H
