@@ -1,0 +1,119 @@
+void tftInitSeq()
+{
+    // RESET Cycle
+    RSTOUT &= ~RSTBIT;
+    __delay_cycles(50000);
+    RSTOUT |=  RSTBIT;
+    __delay_cycles(50000);
+
+    // Enable CS
+    CSOUT &= ~CSBIT;
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0xCB);
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x39);
+    spiTransfer(0x2C);
+    spiTransfer(0x00);
+    spiTransfer(0x34);
+    spiTransfer(0x02);
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0xCF);
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x00);
+    spiTransfer(0XC1);
+    spiTransfer(0X30);
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0xE8);
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x85);
+    spiTransfer(0x00);
+    spiTransfer(0x78);
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0xEA);
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x00);
+    spiTransfer(0x00);
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0xED);
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x64);
+    spiTransfer(0x03);
+    spiTransfer(0X12);
+    spiTransfer(0X81);
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0xF7);
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0X20);
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0xC0);      //Power control
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x23);      // 23 VRH[5:0]
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0xC1);      //Power control
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x10);      // SAP[2:0];BT[3:0]
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0xC5);      //VCM control
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x3e);      //Contrast
+    spiTransfer(0x28);
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0xC7);      // VCM control2
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x20);      // --
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0x36);      // Memory Access Control
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x48);      // 48    (28 -> mode paysage, 48 -> mode portrait)
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0x3A);      // Pixel format set
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x66);      // 0X66
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0xB1);
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x00);
+    spiTransfer(0x18);      // 18
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0xB6);      // Display Function Control
+//    spiTransfer(DUMMY);     // DUMMY
+    DCOUT |=  DCBIT;        // DATA
+    spiTransfer(0x20);      // 82
+
+    DCOUT &= ~DCBIT;        // CMD
+    spiTransfer(0x11);      // Exit Sleep
+    __delay_cycles(30000);
+
+    spiTransfer(0x29);      //CMD
+    spiTransfer(0x2C);
+
+    // Disable CS
+    CSOUT |=  CSBIT;
+}

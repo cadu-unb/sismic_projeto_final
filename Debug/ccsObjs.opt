@@ -1,0 +1,8 @@
+"./clock-lcd.obj"
+"./main.obj"
+"./spi.obj"
+"./tft-lcd.obj"
+"./time-ctrl.obj"
+"../lnk_msp430f5529.cmd"
+-llibmath.a
+-llibc.a
