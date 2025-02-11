@@ -11,7 +11,7 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./clock-lcd.obj" \
-"./font-5x7.obj" \
+"./fonts.obj" \
 "./main.obj" \
 "./spi.obj" \
 "./tft-lcd.obj" \
@@ -147,8 +147,8 @@ _Trabalho.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "clock-lcd.obj" "font-5x7.obj" "main.obj" "spi.obj" "tft-lcd.obj" "time-ctrl.obj" 
-	-$(RM) "clock-lcd.d" "font-5x7.d" "main.d" "spi.d" "tft-lcd.d" "time-ctrl.d" 
+	-$(RM) "clock-lcd.obj" "fonts.obj" "main.obj" "spi.obj" "tft-lcd.obj" "time-ctrl.obj" 
+	-$(RM) "clock-lcd.d" "fonts.d" "main.d" "spi.d" "tft-lcd.d" "time-ctrl.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

@@ -3,7 +3,7 @@
 #include "spi.h"
 #include "time-ctrl.h"
 #include "tft-lcd.h"
-#include "font-5x7.h"
+#include "fonts.h"
 
 
 void tftConfig()
@@ -114,7 +114,7 @@ void tftWrite(uint8_t cmd, uint8_t * data, uint8_t nData)
     spiTransfer(cmd);
 
     // DUMMY transfer
-    spiTransfer(DUMMY);
+    //spiTransfer(DUMMY);
 
     // Write Command Data
     DCOUT |=  DCBIT;            // DC == 1
@@ -179,14 +179,31 @@ void Address_set(uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2)
     sWcmd(0x2c);
 }
 
-void draw_pixel (uint16_t cr,uint16_t cv,uint16_t cb) 
+void draw_pixel (uint16_t cr,uint16_t cg,uint16_t cb) 
 {
     sWdata(cr);
-    sWdata(cv);
+    sWdata(cg);
     sWdata(cb);
 }
 
-void LCD_Clear(uint16_t cr, uint16_t cv, uint16_t cb, int screen_orientation)
+void drawRect(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
+{
+    uint16_t ii,mm;
+    // Enable CS        
+    CSOUT &= ~CSBIT;
+
+    Address_set(x1,y1,x2,y2);
+    for(ii=0;ii<(x2-x1);ii++)
+    for(mm=0;mm<(y2-y1);mm++)
+    {
+        draw_pixel(0, 0xffff, 0);
+    }
+
+    // Disable CS
+    CSOUT |=  CSBIT;
+}
+
+void LCD_Clear(uint16_t cr, uint16_t cg, uint16_t cb, int screen_orientation)
 {
     uint16_t ii,mm;
     
@@ -199,7 +216,7 @@ void LCD_Clear(uint16_t cr, uint16_t cv, uint16_t cb, int screen_orientation)
         for(ii=0;ii<240;ii++)
         for(mm=0;mm<320;mm++)
         {
-            draw_pixel(cr, cv, cb);
+            draw_pixel(cr, cg, cb);
         }
     }
     else
@@ -208,7 +225,7 @@ void LCD_Clear(uint16_t cr, uint16_t cv, uint16_t cb, int screen_orientation)
         for(ii=0;ii<320;ii++)
         for(mm=0;mm<240;mm++)
         {
-            draw_pixel(cr, cv, cb);
+            draw_pixel(cr, cg, cb);
         }
     }
 
@@ -220,7 +237,7 @@ void LCD_Clear(uint16_t cr, uint16_t cv, uint16_t cb, int screen_orientation)
 void LCD_Arc()
 {
     uint8_t ii,mm;
-    uint16_t cb = 0, cv = 0, cr = 0;
+    uint16_t cb = 0, cg = 0, cr = 0;
     // Enable CS
     CSOUT &= ~CSBIT;
 
@@ -232,8 +249,8 @@ void LCD_Arc()
         else cb=3*(80-(ii-240)%80);
         for(mm=0;mm<240;mm++)
         {
-            cv = mm%240;
-            draw_pixel(cr, cv, cb);
+            cg = mm%240;
+            draw_pixel(cr, cg, cb);
         }
     }
     // Disable CS
@@ -254,41 +271,63 @@ void LCD_Carre()
     CSOUT |=  CSBIT;
 }
 
-void drawPixel(uint16_t x, uint16_t y, uint16_t color)
+void drawPixel(uint16_t x, uint16_t y, uint16_t cr, uint16_t cg, uint16_t cb, int mult)
 {
-    uint8_t data[4];
+    // Enable CS
+    CSOUT &= ~CSBIT;
 
-    // Defines the area of a single pixel
-    data[0] = x >> 8; data[1] = x & 0xFF;
-    tftWrite(0x2A, data, 2); // Set column address
+    Address_set(x, y, x*mult, y*mult);
+    draw_pixel(cr, cg, cb);
 
-    data[0] = y >> 8; data[1] = y & 0xFF;
-    tftWrite(0x2B, data, 2); // Set row address
-
-    // Send the pixel color
-    data[0] = color >> 8; data[1] = color & 0xFF;
-    tftWrite(0x2C, data, 2); // Send the color
+    // Disable CS
+    CSOUT |=  CSBIT;
 }
 
-void drawChar(uint16_t x, uint16_t y, char c, uint16_t color, uint16_t bg) {
-    uint8_t i, j;
-    uint8_t line;
+void drawChar(uint16_t x, uint16_t y, char c, uint16_t cr, uint16_t cg, uint16_t cb)
+{
+    uint8_t col, row;
 
-    for (i = 0; i < 5; i++) {  // Largura do caractere (5 pixels)
-        line = font5x7[c - 32][i];  // Busca a linha correspondente no array
-
-        for (j = 0; j < 7; j++) {  // Altura do caractere (7 pixels)
-            if (line & 0x01) {
-                drawPixel(x + i, y + j, color);  // Pixel do texto
-            } else {
-                drawPixel(x + i, y + j, bg);  // Pixel de fundo
+    for (col = 0; col < 5; col++) {
+        uint8_t line = font5x7[c][col]; // Ajustando indice do caractere
+        for (row = 0; row < 7; row++) {
+            if (line & (1 << row)) {
+                drawPixel(x + col, y + row, cr, cg, cb, 1);
             }
-            line >>= 1;
         }
     }
 }
 
+void drawString(uint16_t x, uint16_t y, const char *str, uint16_t cr, uint16_t cg, uint16_t cb)
+{
+    while (*str) {
+        drawChar(x, y, *str, cr, cg, cb);
+        x += 6; // Espacamento entre caracteres (5 pixels + 1 de espaco)
+        str++;
+    }
+}
 
+void drawChar_3x(uint16_t x, uint16_t y, char c, uint16_t cr, uint16_t cg, uint16_t cb)
+{
+    uint8_t col, row;
+
+    for (col = 0; col < 21; col++) {
+        uint8_t line = font15x21[0][col]; // Ajustando indice do caractere
+        for (row = 0; row < 15; row++) {
+            if (line & (1 << row)) {
+                drawPixel(x, y, cr, cg, cb, 10);
+            }
+        }
+    }
+}
+
+void drawString_3x(uint16_t x, uint16_t y, const char *str, uint16_t cr, uint16_t cg, uint16_t cb)
+{
+    while (*str) {
+        drawChar_3x(x, y, *str, cr, cg, cb);
+        x += 6; // Espacamento entre caracteres (5 pixels + 1 de espaco)
+        str++;
+    }
+}
 
 
 

@@ -1,5 +1,5 @@
 "./clock-lcd.obj"
-"./font-5x7.obj"
+"./fonts.obj"
 "./main.obj"
 "./spi.obj"
 "./tft-lcd.obj"

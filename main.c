@@ -32,19 +32,14 @@ int main(void)
 
     while (j--) {
         LCD_Clear(0xff, 0xff, 0xff, 1);
-        delay(1000);
-        LCD_Clear(0xff, 0x00, 0x00, 0);
-        delay(1000);
-        LCD_Clear(0x00, 0xff, 0x00, 1);
-        delay(1000);
-        LCD_Clear(0x00, 0x00, 0xff, 0);
-        delay(1000);
-//        LCD_Arc();
-//        delay(3000);
-//        LCD_Carre();
-//        delay(5000);
-//        LCD_Clear(0x00, 0x00, 0x00);
-//        delay(50000);
+
+        //drawRect(50, 10, 65, 31);
+        drawString_3x(50, 10, "0", 0x0000, 0x0000, 0x0000);
+        drawString(100, 20, "!", 0x0000, 0x0000, 0x0000);
+
+
+
+        delay(10);
     }
 
     __bis_SR_register(LPM4_bits);
