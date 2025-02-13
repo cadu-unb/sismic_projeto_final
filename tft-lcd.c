@@ -276,7 +276,7 @@ void drawPixel(uint16_t x, uint16_t y, uint16_t cr, uint16_t cg, uint16_t cb, in
     // Enable CS
     CSOUT &= ~CSBIT;
 
-    Address_set(x, y, x*mult, y*mult);
+    Address_set(x, y, x, y);
     draw_pixel(cr, cg, cb);
 
     // Disable CS
@@ -310,11 +310,11 @@ void drawChar_3x(uint16_t x, uint16_t y, char c, uint16_t cr, uint16_t cg, uint1
 {
     uint8_t col, row;
 
-    for (col = 0; col < 21; col++) {
+    for (col = 0; col < 15; col++) {
         uint8_t line = font15x21[0][col]; // Ajustando indice do caractere
-        for (row = 0; row < 15; row++) {
+        for (row = 0; row < 21; row++) {
             if (line & (1 << row)) {
-                drawPixel(x, y, cr, cg, cb, 10);
+                drawPixel(x + col, y + row, cr, cg, cb, 1);
             }
         }
     }

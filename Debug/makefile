@@ -16,6 +16,13 @@ ORDERED_OBJS += \
 "./spi.obj" \
 "./tft-lcd.obj" \
 "./time-ctrl.obj" \
+"./_fonts/font12.obj" \
+"./_fonts/font16.obj" \
+"./_fonts/font20.obj" \
+"./_fonts/font24.obj" \
+"./_fonts/font32.obj" \
+"./_fonts/font48.obj" \
+"./_fonts/font8.obj" \
 "../lnk_msp430f5529.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibmath.a \
@@ -29,7 +36,9 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include _fonts/subdir_vars.mk
 -include subdir_rules.mk
+-include _fonts/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -147,8 +156,8 @@ _Trabalho.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "clock-lcd.obj" "fonts.obj" "main.obj" "spi.obj" "tft-lcd.obj" "time-ctrl.obj" 
-	-$(RM) "clock-lcd.d" "fonts.d" "main.d" "spi.d" "tft-lcd.d" "time-ctrl.d" 
+	-$(RM) "clock-lcd.obj" "fonts.obj" "main.obj" "spi.obj" "tft-lcd.obj" "time-ctrl.obj" "_fonts\font12.obj" "_fonts\font16.obj" "_fonts\font20.obj" "_fonts\font24.obj" "_fonts\font32.obj" "_fonts\font48.obj" "_fonts\font8.obj" 
+	-$(RM) "clock-lcd.d" "fonts.d" "main.d" "spi.d" "tft-lcd.d" "time-ctrl.d" "_fonts\font12.d" "_fonts\font16.d" "_fonts\font20.d" "_fonts\font24.d" "_fonts\font32.d" "_fonts\font48.d" "_fonts\font8.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

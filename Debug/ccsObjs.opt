@@ -4,6 +4,13 @@
 "./spi.obj"
 "./tft-lcd.obj"
 "./time-ctrl.obj"
+"./_fonts/font12.obj"
+"./_fonts/font16.obj"
+"./_fonts/font20.obj"
+"./_fonts/font24.obj"
+"./_fonts/font32.obj"
+"./_fonts/font48.obj"
+"./_fonts/font8.obj"
 "../lnk_msp430f5529.cmd"
 -llibmath.a
 -llibc.a

@@ -35,7 +35,8 @@ int main(void)
 
         //drawRect(50, 10, 65, 31);
         drawString_3x(50, 10, "0", 0x0000, 0x0000, 0x0000);
-        drawString(100, 20, "!", 0x0000, 0x0000, 0x0000);
+        drawString_3x(50, 10, "1", 0x0000, 0x0000, 0x0000);
+        //drawString(100, 20, "!", 0x0000, 0x0000, 0x0000);
 
 
 
