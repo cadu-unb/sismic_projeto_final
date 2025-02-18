@@ -26,7 +26,7 @@ int main(void)
 
 	tftConfig();
 
-	uint8_t j = 10;
+	uint8_t j = 100;
     while (j--) {
         LCD_Clear(0xff, 0xff, 0xff, 1);
 
@@ -37,8 +37,10 @@ int main(void)
         drawString(80, 140, "        ovos", 255, 0x0000, 0x0000);
         drawString(10, 220, "Porcao: 100g", 0x0, 0x0000, 0x0000);
         drawString(210, 220, "Valor Cal: 30kCal", 0x0, 0x0000, 0x0000);
-        delay(100);
 
+        delay(2000);
+        LCD_Clear(0, 0, 0, 1);
+        delay(1000);
         LCD_Clear(0xff, 0xff, 0xff, 1);
 
         drawString(5, 5, "ISM", 1, 136, 214);
@@ -48,8 +50,10 @@ int main(void)
         //drawString(80, 140, "        ovos", 255, 0x0000, 0x0000);
         drawString(10, 220, "Porcao: 200g", 0x0, 0x0000, 0x0000);
         drawString(210, 220, "Valor Cal: 60kCal", 0x0, 0x0000, 0x0000);
-        delay(100);
 
+        delay(2000);
+        LCD_Clear(0, 0, 0, 1);
+        delay(1000);
         LCD_Clear(0xff, 0xff, 0xff, 1);
 
         drawString(5, 5, "ISM", 1, 136, 214);
@@ -59,7 +63,9 @@ int main(void)
         drawString(10, 220, "Porcao: 150ml", 0x0, 0x0000, 0x0000);
         drawString(210, 220, "Valor Cal: 15kCal", 0x0, 0x0000, 0x0000);
 
-        delay(100);
+        delay(2000);
+        LCD_Clear(0, 0, 0, 1);
+        delay(1000);
     }
 
     __bis_SR_register(LPM4_bits);

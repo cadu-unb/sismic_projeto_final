@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v21.6.1                     
 ******************************************************************************
->> Linked Mon Feb 17 23:46:54 2025
+>> Linked Tue Feb 18 00:01:57 2025
 
 OUTPUT FILE NAME:   <_Trabalho.out>
 ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 00004400
@@ -85,7 +85,7 @@ MEMORY CONFIGURATION
   INT61                 0000fffa   00000002  00000002  00000000  RWIX
   INT62                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FLASH2                00010000   000143f8  0000074e  00013caa  RWIX
+  FLASH2                00010000   000143f8  0000078a  00013c6e  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -190,25 +190,25 @@ SYSNMI     0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.c.obj (.reset)
 
-.text      0    00010000    0000074e     
-                  00010000    000002a4     main.obj (.text:main)
-                  000102a4    00000192     tft-lcd.obj (.text:tftInitSeq)
-                  00010436    0000008e     tft-lcd.obj (.text:LCD_Clear)
-                  000104c4    0000007c     tft-lcd.obj (.text:drawChar)
-                  00010540    0000006e     tft-lcd.obj (.text:Address_set)
-                  000105ae    00000052     clock-lcd.obj (.text:SetVcoreUp)
-                  00010600    00000042     tft-lcd.obj (.text:drawString)
-                  00010642    00000036     tft-lcd.obj (.text:tftConfig)
-                  00010678    00000034     spi.obj (.text:spiConfig)
-                  000106ac    00000028     tft-lcd.obj (.text:drawPixel)
-                  000106d4    0000001c     tft-lcd.obj (.text:draw_pixel)
-                  000106f0    00000016     time-ctrl.obj (.text:delay)
-                  00010706    00000016     spi.obj (.text:spiTransfer)
-                  0001071c    00000012     tft-lcd.obj (.text:sWdata)
-                  0001072e    0000000c     tft-lcd.obj (.text:sWcmd)
-                  0001073a    0000000a     rts430x_lc_rd_eabi.lib : lsl16.asm.obj (.text)
-                  00010744    00000006                            : exit.c.obj (.text:abort)
-                  0001074a    00000004                            : pre_init.c.obj (.text:_system_pre_init)
+.text      0    00010000    0000078a     
+                  00010000    000002e0     main.obj (.text:main)
+                  000102e0    00000192     tft-lcd.obj (.text:tftInitSeq)
+                  00010472    0000008e     tft-lcd.obj (.text:LCD_Clear)
+                  00010500    0000007c     tft-lcd.obj (.text:drawChar)
+                  0001057c    0000006e     tft-lcd.obj (.text:Address_set)
+                  000105ea    00000052     clock-lcd.obj (.text:SetVcoreUp)
+                  0001063c    00000042     tft-lcd.obj (.text:drawString)
+                  0001067e    00000036     tft-lcd.obj (.text:tftConfig)
+                  000106b4    00000034     spi.obj (.text:spiConfig)
+                  000106e8    00000028     tft-lcd.obj (.text:drawPixel)
+                  00010710    0000001c     tft-lcd.obj (.text:draw_pixel)
+                  0001072c    00000016     time-ctrl.obj (.text:delay)
+                  00010742    00000016     spi.obj (.text:spiTransfer)
+                  00010758    00000012     tft-lcd.obj (.text:sWdata)
+                  0001076a    0000000c     tft-lcd.obj (.text:sWcmd)
+                  00010776    0000000a     rts430x_lc_rd_eabi.lib : lsl16.asm.obj (.text)
+                  00010780    00000006                            : exit.c.obj (.text:abort)
+                  00010786    00000004                            : pre_init.c.obj (.text:_system_pre_init)
 
 MODULE SUMMARY
 
@@ -216,13 +216,13 @@ MODULE SUMMARY
        ------             ----   -------   -------
     .\
        fonts.obj          0      1280      0      
+       main.obj           736    264       0      
        tft-lcd.obj        996    0         0      
-       main.obj           676    264       0      
        clock-lcd.obj      82     0         0      
        spi.obj            74     0         0      
        time-ctrl.obj      22     0         0      
     +--+------------------+------+---------+---------+
-       Total:             1850   1544      0      
+       Total:             1910   1544      0      
                                                   
     C:\ti\ccs1281\ccs\tools\compiler\ti-cgt-msp430_21.6.1.LTS\lib\rts430x_lc_rd_eabi.lib
        boot.c.obj         20     2         0      
@@ -257,7 +257,7 @@ MODULE SUMMARY
                                                   
        Stack:             0      0         160    
     +--+------------------+------+---------+---------+
-       Grand Total:       1898   1590      160    
+       Grand Total:       1958   1590      160    
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
@@ -346,8 +346,8 @@ address   name
 00000732  ADC12MEM9             
 00000733  ADC12MEM9_H           
 00000732  ADC12MEM9_L           
-00010540  Address_set           
-00010744  C$$EXIT               
+0001057c  Address_set           
+00010780  C$$EXIT               
 000008c0  CBCTL0                
 000008c1  CBCTL0_H              
 000008c0  CBCTL0_L              
@@ -415,7 +415,7 @@ address   name
 00000146  FCTL4                 
 00000147  FCTL4_H               
 00000146  FCTL4_L               
-00010436  LCD_Clear             
+00010472  LCD_Clear             
 000004c4  MAC                   
 000004da  MAC32H                
 000004db  MAC32H_H              
@@ -707,7 +707,7 @@ address   name
 0000019a  SYSUNIV               
 0000019b  SYSUNIV_H             
 0000019a  SYSUNIV_L             
-000105ae  SetVcoreUp            
+000105ea  SetVcoreUp            
 00000352  TA0CCR0               
 00000354  TA0CCR1               
 00000356  TA0CCR2               
@@ -1030,25 +1030,25 @@ ffffffff  __TI_pprof_out_hndl
 ffffffff  __TI_prof_data_size   
 ffffffff  __TI_prof_data_start  
 ffffffff  __c_args__            
-0001073a  __mspabi_slli         
+00010776  __mspabi_slli         
 00004400  _c_int00_noinit_noargs
 0000fffe  _reset_vector         
 00004360  _stack                
-0001074a  _system_pre_init      
-00010744  abort                 
-000106f0  delay                 
-000104c4  drawChar              
-000106ac  drawPixel             
-00010600  drawString            
-000106d4  draw_pixel            
+00010786  _system_pre_init      
+00010780  abort                 
+0001072c  delay                 
+00010500  drawChar              
+000106e8  drawPixel             
+0001063c  drawString            
+00010710  draw_pixel            
 0000441c  font5x7               
 00010000  main                  
-0001072e  sWcmd                 
-0001071c  sWdata                
-00010678  spiConfig             
-00010706  spiTransfer           
-00010642  tftConfig             
-000102a4  tftInitSeq            
+0001076a  sWcmd                 
+00010758  sWdata                
+000106b4  spiConfig             
+00010742  spiTransfer           
+0001067e  tftConfig             
+000102e0  tftInitSeq            
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -1818,24 +1818,24 @@ address   name
 0000fffc  __TI_int62            
 0000fffe  _reset_vector         
 00010000  main                  
-000102a4  tftInitSeq            
-00010436  LCD_Clear             
-000104c4  drawChar              
-00010540  Address_set           
-000105ae  SetVcoreUp            
-00010600  drawString            
-00010642  tftConfig             
-00010678  spiConfig             
-000106ac  drawPixel             
-000106d4  draw_pixel            
-000106f0  delay                 
-00010706  spiTransfer           
-0001071c  sWdata                
-0001072e  sWcmd                 
-0001073a  __mspabi_slli         
-00010744  C$$EXIT               
-00010744  abort                 
-0001074a  _system_pre_init      
+000102e0  tftInitSeq            
+00010472  LCD_Clear             
+00010500  drawChar              
+0001057c  Address_set           
+000105ea  SetVcoreUp            
+0001063c  drawString            
+0001067e  tftConfig             
+000106b4  spiConfig             
+000106e8  drawPixel             
+00010710  draw_pixel            
+0001072c  delay                 
+00010742  spiTransfer           
+00010758  sWdata                
+0001076a  sWcmd                 
+00010776  __mspabi_slli         
+00010780  C$$EXIT               
+00010780  abort                 
+00010786  _system_pre_init      
 ffffffff  __TI_pprof_out_hndl   
 ffffffff  __TI_prof_data_size   
 ffffffff  __TI_prof_data_start  
