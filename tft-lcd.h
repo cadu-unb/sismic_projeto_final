@@ -38,12 +38,12 @@ void LCD_Clear  (uint16_t cr, uint16_t cv, uint16_t cb, int screen_orientation);
 void LCD_Arc   ();
 void LCD_Carre ();
 
-void drawPixel  (uint16_t x, uint16_t y, uint16_t cr, uint16_t cg, uint16_t cb, int mult);
+void drawPixel  (uint16_t x, uint16_t y, uint16_t cr, uint16_t cg, uint16_t cb);
 void drawChar   (uint16_t x, uint16_t y, char c, uint16_t cr, uint16_t cg, uint16_t cb);
 void drawString (uint16_t x, uint16_t y, const char *str, uint16_t cr, uint16_t cg, uint16_t cb);
 
-void drawChar_3x    (uint16_t x, uint16_t y, char c, uint16_t cr, uint16_t cg, uint16_t cb);
-void drawString_3x  (uint16_t x, uint16_t y, const char *str, uint16_t cr, uint16_t cg, uint16_t cb);
+void drawChar_4x    (uint16_t x, uint16_t y, char c, uint16_t cr, uint16_t cg, uint16_t cb);
+void drawString_4x  (uint16_t x, uint16_t y, const char *str, uint16_t cr, uint16_t cg, uint16_t cb);
 void drawRect       (uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 
 #endif  // __TFT_LCD_H

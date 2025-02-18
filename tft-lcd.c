@@ -271,7 +271,7 @@ void LCD_Carre()
     CSOUT |=  CSBIT;
 }
 
-void drawPixel(uint16_t x, uint16_t y, uint16_t cr, uint16_t cg, uint16_t cb, int mult)
+void drawPixel(uint16_t x, uint16_t y, uint16_t cr, uint16_t cg, uint16_t cb)
 {
     // Enable CS
     CSOUT &= ~CSBIT;
@@ -291,7 +291,7 @@ void drawChar(uint16_t x, uint16_t y, char c, uint16_t cr, uint16_t cg, uint16_t
         uint8_t line = font5x7[c][col]; // Ajustando indice do caractere
         for (row = 0; row < 7; row++) {
             if (line & (1 << row)) {
-                drawPixel(x + col, y + row, cr, cg, cb, 1);
+                drawPixel(x + col, y + row, cr, cg, cb);
             }
         }
     }
@@ -306,25 +306,25 @@ void drawString(uint16_t x, uint16_t y, const char *str, uint16_t cr, uint16_t c
     }
 }
 
-void drawChar_3x(uint16_t x, uint16_t y, char c, uint16_t cr, uint16_t cg, uint16_t cb)
+void drawChar_4x(uint16_t x, uint16_t y, char c, uint16_t cr, uint16_t cg, uint16_t cb)
 {
-    uint8_t col, row;
+    uint16_t col, row;
 
-    for (col = 0; col < 15; col++) {
-        uint8_t line = font15x21[0][col]; // Ajustando indice do caractere
-        for (row = 0; row < 21; row++) {
+    for (col = 0; col < 20; col++) {
+        volatile uint32_t line = font20x28[c][col]; // Ajustando indice do caractere
+        for (row = 0; row < 28; row++) {
             if (line & (1 << row)) {
-                drawPixel(x + col, y + row, cr, cg, cb, 1);
+                drawPixel(x + col, y + row, cr, cg, cb);
             }
         }
     }
 }
 
-void drawString_3x(uint16_t x, uint16_t y, const char *str, uint16_t cr, uint16_t cg, uint16_t cb)
+void drawString_4x(uint16_t x, uint16_t y, const char *str, uint16_t cr, uint16_t cg, uint16_t cb)
 {
     while (*str) {
-        drawChar_3x(x, y, *str, cr, cg, cb);
-        x += 6; // Espacamento entre caracteres (5 pixels + 1 de espaco)
+        drawChar_4x(x, y, *str, cr, cg, cb);
+        x += 10; // Espacamento entre caracteres (5 pixels + 1 de espaco)
         str++;
     }
 }

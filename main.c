@@ -34,8 +34,14 @@ int main(void)
         LCD_Clear(0xff, 0xff, 0xff, 1);
 
         //drawRect(50, 10, 65, 31);
-        drawString_3x(50, 10, "0", 0x0000, 0x0000, 0x0000);
-        drawString_3x(50, 10, "1", 0x0000, 0x0000, 0x0000);
+        drawString_4x(50, 10, "0 9 @ A B C", 0x0000, 0x0000, 0x0000);
+//        drawString_4x(50, 10, "0", 0x0000, 0x0000, 0x0000);
+//        drawString_4x(50, 30, "9", 0x0000, 0x0000, 0x0000);
+//        drawString_4x(50, 50, "@", 0x0000, 0x0000, 0x0000);
+//        drawString_4x(50, 38, "A", 0x0000, 0x0000, 0x0000);
+//        drawString_4x(50, 66, "B", 0x0000, 0x0000, 0x0000);
+//        drawString_4x(50, 66, "C", 0x0000, 0x0000, 0x0000);
+//        drawString_4x(100, 10, , 0x0000, 0x0000, 0x0000);
         //drawString(100, 20, "!", 0x0000, 0x0000, 0x0000);
 
 
