@@ -1,11 +1,13 @@
+/// tft-lcd.h - Definições e funções para controle do display TFT LCD
 #ifndef __TFT_LCD_H
 #define __TFT_LCD_H
 
 #include <msp430.h> 
 #include <stdint.h>
 
-#define DUMMY   0xFF
+#define DUMMY   0xFF  // Valor padrão para transferências SPI fictícias
 
+// Definições de pinos de controle do LCD
 #define CSDIR   P8DIR
 #define CSOUT   P8OUT
 #define CSBIT   BIT1
