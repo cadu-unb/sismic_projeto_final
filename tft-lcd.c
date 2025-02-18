@@ -121,10 +121,6 @@ void drawRect(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 
 void LCD_Clear(uint16_t cr, uint16_t cg, uint16_t cb, int screen_orientation)
 {
-}
-
-void LCD_Clear(uint16_t cr, uint16_t cg, uint16_t cb, int screen_orientation)
-{
 	uint16_t ii,mm;
     
 	CSOUT &= ~CSBIT;       // Habilita o chip
@@ -179,18 +175,6 @@ void LCD_Carre()
     CSOUT |=  CSBIT;
 }
 
-void drawPixel(uint16_t x, uint16_t y, uint16_t cr, uint16_t cg, uint16_t cb)
-{
-    // Enable CS
-    CSOUT &= ~CSBIT;
-
-    Address_set(x, y, x, y);
-    draw_pixel(cr, cg, cb);
-
-    // Disable CS
-    CSOUT |=  CSBIT;
-}
-
 void drawChar(uint16_t x, uint16_t y, char c, uint16_t cr, uint16_t cg, uint16_t cb)
 {
     uint8_t col, row;
@@ -214,25 +198,51 @@ void drawString(uint16_t x, uint16_t y, const char *str, uint16_t cr, uint16_t c
     }
 }
 
+void drawPixel(uint16_t x, uint16_t y, uint16_t cr, uint16_t cg, uint16_t cb)
+{
+    // Enable CS
+    CSOUT &= ~CSBIT;
+
+    Address_set(x, y, x, y);
+    draw_pixel(cr, cg, cb);
+
+    // Disable CS
+    CSOUT |=  CSBIT;
+}
+
 void drawChar_4x(uint16_t x, uint16_t y, char c, uint16_t cr, uint16_t cg, uint16_t cb)
 {
     uint16_t col, row;
+    
+//    CSOUT &= ~CSBIT; // Habilita CS para toda a escrita do caractere
 
     for (col = 0; col < 20; col++) {
-        volatile uint32_t line = font20x28[c][col]; // Ajustando indice do caractere
-        for (row = 0; row < 28; row++) {
-            if (line & (1 << row)) {
+        uint32_t line = font20x28[c - 32][col]; // Obtém os dados da coluna do caractere
+
+        // Parte superior (0 a 13)
+        for (row = 0; row < 14; row++) {
+            if (line & (1 << (27 - row))) {
+                drawPixel(x + col, y + row, cr, cg, cb);
+            }
+        }
+
+        // Parte inferior (14 a 27)
+        for (row = 14; row < 28; row++) {
+            if (line & (1 << (27 - row))) {
                 drawPixel(x + col, y + row, cr, cg, cb);
             }
         }
     }
+
+//    CSOUT |= CSBIT; // Desabilita CS após escrever o caractere
 }
+
 
 void drawString_4x(uint16_t x, uint16_t y, const char *str, uint16_t cr, uint16_t cg, uint16_t cb)
 {
     while (*str) {
         drawChar_4x(x, y, *str, cr, cg, cb);
-        x += 10; // Espacamento entre caracteres (5 pixels + 1 de espaco)
+        x += 21; // Espacamento entre caracteres (20 pixels + 1 de espaco)
         str++;
     }
 }

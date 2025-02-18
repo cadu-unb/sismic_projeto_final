@@ -30,20 +30,36 @@ int main(void)
     while (j--) {
         LCD_Clear(0xff, 0xff, 0xff, 1);
 
-        //drawRect(50, 10, 65, 31);
-        drawString_4x(50, 10, "0 9 @ A B C", 0x0000, 0x0000, 0x0000);
-//        drawString_4x(50, 10, "0", 0x0000, 0x0000, 0x0000);
-//        drawString_4x(50, 30, "9", 0x0000, 0x0000, 0x0000);
-//        drawString_4x(50, 50, "@", 0x0000, 0x0000, 0x0000);
-//        drawString_4x(50, 38, "A", 0x0000, 0x0000, 0x0000);
-//        drawString_4x(50, 66, "B", 0x0000, 0x0000, 0x0000);
-//        drawString_4x(50, 66, "C", 0x0000, 0x0000, 0x0000);
-//        drawString_4x(100, 10, , 0x0000, 0x0000, 0x0000);
-        //drawString(100, 20, "!", 0x0000, 0x0000, 0x0000);
+        drawString(5, 5, "ISM", 1, 136, 214);
+        drawString(120, 40, "COMPLEMENTO", 0x0, 0x0000, 0x0000);
+        drawString(120, 100, "Ovos mexidos", 0x0000, 0x0000, 0x0000);
+        drawString(80, 120, "Contem: Leite e derivados", 255, 0x0000, 0x0000);
+        drawString(80, 140, "        ovos", 255, 0x0000, 0x0000);
+        drawString(10, 220, "Porcao: 100g", 0x0, 0x0000, 0x0000);
+        drawString(210, 220, "Valor Cal: 30kCal", 0x0, 0x0000, 0x0000);
+        delay(100);
 
+        LCD_Clear(0xff, 0xff, 0xff, 1);
 
+        drawString(5, 5, "ISM", 1, 136, 214);
+        drawString(120, 40, "PRATO PRINCIPAL", 0x0, 0x0000, 0x0000);
+        drawString(90, 100, "Isca de Frango acebolada", 0x0000, 0x0000, 0x0000);
+        //drawString(80, 120, "Contem: Leite e derivados", 255, 0x0000, 0x0000);
+        //drawString(80, 140, "        ovos", 255, 0x0000, 0x0000);
+        drawString(10, 220, "Porcao: 200g", 0x0, 0x0000, 0x0000);
+        drawString(210, 220, "Valor Cal: 60kCal", 0x0, 0x0000, 0x0000);
+        delay(100);
 
-        delay(10);
+        LCD_Clear(0xff, 0xff, 0xff, 1);
+
+        drawString(5, 5, "ISM", 1, 136, 214);
+        drawString(140, 40, "Sopa", 0x0, 0x0000, 0x0000);
+        drawString(90, 100, "Sopa de cenoura com curry", 0x0000, 0x0000, 0x0000);
+        drawString(80, 120, "      e leite de  coco", 0, 0x0000, 0x0000);
+        drawString(10, 220, "Porcao: 150ml", 0x0, 0x0000, 0x0000);
+        drawString(210, 220, "Valor Cal: 15kCal", 0x0, 0x0000, 0x0000);
+
+        delay(100);
     }
 
     __bis_SR_register(LPM4_bits);
